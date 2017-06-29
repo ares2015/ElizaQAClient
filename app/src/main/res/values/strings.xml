@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ElizaQAClient</string>
+    <string name="type_question">Type a question</string>
+    <string name="button_send">Send</string>
+</resources>
