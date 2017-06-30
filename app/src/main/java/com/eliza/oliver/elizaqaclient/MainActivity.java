@@ -1,7 +1,7 @@
 package com.eliza.oliver.elizaqaclient;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,14 +13,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,24 +41,24 @@ public class MainActivity extends AppCompatActivity {
         String question = msgTextField.getText().toString();
 
 
-            String stringURL = "http://95.105.237.84/crawl?object=" + question;
-            RequestQueue queue = Volley.newRequestQueue(this);
-            StringRequest stringRequest;
-            stringRequest = new StringRequest(Request.Method.GET, stringURL,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            //got our Response as response
-                            //same to make any call to UI thread
-                            answerTextView.setText(response);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    //got error
-                }
-            });
-            queue.add(stringRequest);
+        String stringURL = "http://95.105.237.84/answer?question=" + question;
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest;
+        stringRequest = new StringRequest(Request.Method.GET, stringURL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //got our Response as response
+                        //same to make any call to UI thread
+                        answerTextView.setText("Answer: " + response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //got error
+            }
+        });
+        queue.add(stringRequest);
 
     }
 
